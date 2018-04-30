@@ -1,1 +1,14 @@
-﻿<Properties StartupConfiguration="{3E71412F-40C1-4AF0-B936-46B780EF7C7D}|Default" />
+﻿<Properties StartupConfiguration="{3E71412F-40C1-4AF0-B936-46B780EF7C7D}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="SampleGame/Controller/SpaceGame.cs">
+    <Files>
+      <File FileName="SampleGame/Controller/SpaceGame.cs" Line="7" Column="31" />
+      <File FileName="SampleGame/Controller/Program.cs" Line="14" Column="31" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.SampleGame PreferredExecutionTarget="MonoDevelop.Default" />
+</Properties>

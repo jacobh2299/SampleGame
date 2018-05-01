@@ -11,7 +11,7 @@ using UIKit;
 #endif
 #endregion
 
-namespace SpaceGame.Controller
+namespace SampleGame.Controller
 {
 #if __IOS__ || __TVOS__
     [Register("AppDelegate")]

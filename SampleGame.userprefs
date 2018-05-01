@@ -1,8 +1,9 @@
 ﻿<Properties StartupConfiguration="{3E71412F-40C1-4AF0-B936-46B780EF7C7D}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="SampleGame/Controller/SpaceGame.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="SampleGame/Model/Player.cs">
     <Files>
       <File FileName="SampleGame/Controller/SpaceGame.cs" Line="73" Column="46" />
       <File FileName="SampleGame/Controller/Program.cs" Line="18" Column="6" />
+      <File FileName="SampleGame/Model/Player.cs" Line="2" Column="27" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
@@ -11,4 +12,5 @@
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.ItemProperties.SampleGame PreferredExecutionTarget="MonoDevelop.Default" />
+  <MultiItemStartupConfigurations />
 </Properties>

@@ -1,12 +1,12 @@
 ﻿<Properties StartupConfiguration="{3E71412F-40C1-4AF0-B936-46B780EF7C7D}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="SampleGame/View/ParallaxingBackground.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="SampleGame/Controller/SpaceGame.cs">
     <Files>
-      <File FileName="SampleGame/Controller/SpaceGame.cs" Line="124" Column="25" />
+      <File FileName="SampleGame/Controller/SpaceGame.cs" Line="151" Column="33" />
       <File FileName="SampleGame/Controller/Program.cs" Line="23" Column="29" />
       <File FileName="SampleGame/Model/Player.cs" Line="36" Column="3" />
-      <File FileName="SampleGame/View/Animation.cs" Line="10" Column="1" />
-      <File FileName="SampleGame/View/ParallaxingBackground.cs" Line="8" Column="36" />
-      <File FileName="SampleGame/Model/Enemy.cs" Line="2" Column="21" />
+      <File FileName="SampleGame/View/Animation.cs" Line="140" Column="1" />
+      <File FileName="SampleGame/View/ParallaxingBackground.cs" Line="6" Column="26" />
+      <File FileName="SampleGame/Model/Enemy.cs" Line="125" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />

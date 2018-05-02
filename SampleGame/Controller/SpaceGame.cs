@@ -51,6 +51,9 @@ namespace SampleGame.Controller
 		private TimeSpan fireTime;
 		private TimeSpan previousFireTime;
 
+		private Texture2D explosionTexture;
+		private List<Animation> explosions;
+
 		public Game1()
 		{
 			graphics = new GraphicsDeviceManager(this);
@@ -65,6 +68,8 @@ namespace SampleGame.Controller
 		/// </summary>
 		protected override void Initialize()
 		{
+			explosions = new List<Animation>();
+
 			// Initialize the enemies list
 			enemies = new List<Enemy>();
 
@@ -121,6 +126,9 @@ namespace SampleGame.Controller
 
 			projectileTexture = Content.Load<Texture2D>("Texture/laser");
 
+			explosionTexture = Content.Load<Texture2D>("Animation/explosion");
+
+
 
 
 
@@ -158,6 +166,9 @@ namespace SampleGame.Controller
 			// Update the projectiles
 			UpdateProjectiles();
 
+			// Update the explosions
+			UpdateExplosions(gameTime);
+
 			//Update the player
 			UpdatePlayer(gameTime);
 			base.Update(gameTime);
@@ -176,8 +187,12 @@ namespace SampleGame.Controller
 			spriteBatch.Draw(mainBackground, Vector2.Zero, Color.White);
 
 
+
 			bgLayer1.Draw(spriteBatch);
 			bgLayer2.Draw(spriteBatch);
+
+
+
 
 			// Draw the Enemies
 			for (int i = 0; i < enemies.Count; i++)
@@ -189,6 +204,12 @@ namespace SampleGame.Controller
 			for (int i = 0; i < projectiles.Count; i++)
 			{
 				projectiles[i].Draw(spriteBatch);
+			}
+
+			// Draw the explosions
+			for (int i = 0; i < explosions.Count; i++)
+			{
+				explosions[i].Draw(spriteBatch);
 			}
 
 
@@ -281,6 +302,12 @@ namespace SampleGame.Controller
 			for (int i = enemies.Count - 1; i >= 0; i--)
 			{
 				enemies[i].Update(gameTime);
+				// If not active and health <= 0
+				if (enemies[i].Health <= 0)
+				{
+					// Add an explosion
+					AddExplosion(enemies[i].Position);
+				}
 
 				if (enemies[i].Active == false)
 				{
@@ -365,8 +392,24 @@ namespace SampleGame.Controller
 			}
 		}
 
+		private void AddExplosion(Vector2 position)
+		{
+			Animation explosion = new Animation();
+			explosion.Initialize(explosionTexture, position, 134, 134, 12, 45, Color.White, 1f, false);
+			explosions.Add(explosion);
+		}
 
-
+		private void UpdateExplosions(GameTime gameTime)
+		{
+			for (int i = explosions.Count - 1; i >= 0; i--)
+			{
+				explosions[i].Update(gameTime);
+				if (explosions[i].Active == false)
+				{
+					explosions.RemoveAt(i);
+				}
+			}
+		}
 
 
 

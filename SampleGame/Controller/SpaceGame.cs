@@ -4,6 +4,8 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using SampleGame.Model;
+using SampleGame.View;
+
 
 namespace SampleGame.Controller
 {
@@ -25,6 +27,13 @@ private GamePadState previousGamePadState;
 
 // A movement speed for the player
 private float playerMoveSpeed;
+// Image used to display the static background
+private Texture2D mainBackground;
+
+// Parallaxing Layers
+private ParallaxingBackground bgLayer1;
+private ParallaxingBackground bgLayer2;
+
 
 		public Game1()
 		{
@@ -45,6 +54,8 @@ private float playerMoveSpeed;
 			player = new Player();
 			// Set a constant player move speed
 playerMoveSpeed = 8.0f;
+			bgLayer1 = new ParallaxingBackground();
+bgLayer2 = new ParallaxingBackground();
 
 			base.Initialize();
 		}
@@ -55,14 +66,23 @@ playerMoveSpeed = 8.0f;
 		/// </summary>
 		protected override void LoadContent()
 		{
+			// Load the parallaxing background
+bgLayer1.Initialize(Content, "Texture/bgLayer1", GraphicsDevice.Viewport.Width, -1);
+bgLayer2.Initialize(Content, "Texture/bgLayer2", GraphicsDevice.Viewport.Width, -2);
+
+mainBackground = Content.Load<Texture2D>("Texture/mainbackground");
+
 			// Create a new SpriteBatch, which can be used to draw textures.
 			spriteBatch = new SpriteBatch(GraphicsDevice);
 // Load the player resources 
+// Load the player resources
+Animation playerAnimation = new Animation();
+Texture2D playerTexture = Content.Load<Texture2D>("Animation/shipAnimation");
+playerAnimation.Initialize(playerTexture, Vector2.Zero, 115, 69, 8, 30, Color.White, 1f, true);
+
 Vector2 playerPosition = new Vector2(GraphicsDevice.Viewport.TitleSafeArea.X, GraphicsDevice.Viewport.TitleSafeArea.Y + GraphicsDevice.Viewport.TitleSafeArea.Height / 2);
+player.Initialize(playerAnimation, playerPosition);
 
-player.Initialize(Content.Load<Texture2D>("Texture/player"), playerPosition);
-
-			//TODO: use this.Content to load your game content here 
 		}
 
 		/// <summary>
@@ -91,7 +111,6 @@ currentGamePadState = GamePad.GetState(PlayerIndex.One);
 
 //Update the player
 UpdatePlayer(gameTime);
-
 			base.Update(gameTime);
 		}
 
@@ -101,11 +120,18 @@ UpdatePlayer(gameTime);
 		/// <param name="gameTime">Provides a snapshot of timing values.</param>
 		protected override void Draw(GameTime gameTime)
 		{
+			// Draw the moving background
+			spriteBatch.Begin(); 
+			spriteBatch.Draw(mainBackground, Vector2.Zero, Color.White);
+
+			bgLayer1.Draw(spriteBatch);
+bgLayer2.Draw(spriteBatch);
+
 			graphics.GraphicsDevice.Clear(Color.Purple);
 
 			//TODO: Add your drawing code here
 			// Start drawing 
-spriteBatch.Begin(); 
+
 // Draw the Player 
 player.Draw(spriteBatch); 
 // Stop drawing 
@@ -115,6 +141,11 @@ spriteBatch.End();
 		}
 private void UpdatePlayer(GameTime gameTime)
 {
+			player.Update(gameTime);
+			// Update the parallaxing background
+bgLayer1.Update();
+bgLayer2.Update();
+
 
 	// Get Thumbstick Controls
 	player.Position.X += currentGamePadState.ThumbSticks.Left.X * playerMoveSpeed;
